@@ -1,0 +1,5 @@
+{
+  "App_URL": "https://nirmata.io/",
+  "SignUp_URI": "security/signup.html",
+  "Logout_URI": "webclient/#logout"
+}

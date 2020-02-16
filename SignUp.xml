@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SignUp"  >
+	<parameter name="browser" value="Chrome" />
+	<listeners>
+		<listener class-name="main.java.NirmataReportListener"></listener>
+	</listeners>
+
+	<test thread-count="1" name="SignUp">
+		<parameter name="signup_email" value="nirmatatest01@gmail.com" />
+
+		<groups>
+			<run>
+				<include name="NirmataSetUp" />
+				<include name="SignUp" />
+			</run>
+		</groups>
+
+		<classes>
+			<class name="main.java.NirmataSetUp" />
+			<class name="main.java.identity.SignUp" />
+		</classes>
+	</test>
+
+
+
+</suite>

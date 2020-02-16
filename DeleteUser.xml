@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AddUserSuite"  >
+	<parameter name="browser" value="Chrome" />
+	<listeners>
+		<listener class-name="main.java.NirmataReportListener"></listener>
+	</listeners>
+
+	<test thread-count="1" name="Delete User Test">
+		<parameter name="login_account" value="Nirmata" />
+		<parameter name="login_email" value="invstr@yandex.ru" />
+		<parameter name="deluser_email" value="nirmatatest01@gmail.com" />
+
+		<groups>
+			<run>
+				<include name="NirmataSetUp" />
+				<include name="SignIn" />
+				<exclude name="SignOut" />
+				<include name="DeleteUser" />
+			</run>
+
+		</groups>
+
+		<classes>
+			<class name="main.java.NirmataSetUp" />
+			<class name="main.java.login.SignIn" />
+			<class name="main.java.identity.DeleteUser" />
+		</classes>
+	</test>
+
+</suite>

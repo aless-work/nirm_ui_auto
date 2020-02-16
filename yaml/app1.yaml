@@ -1,0 +1,62 @@
+---
+kind: "Deployment"
+apiVersion: "apps/v1"
+metadata:
+  annotations: {}
+  name: "hello-world"
+  labels:
+    nirmata.io/deployment.name: "hello-world"
+    nirmata.io/application.run: "hello-world"
+    nirmata.io/environment.name: "qa-10apr"
+    nirmata.io/service.name: "hello-world"
+    nirmata.io/user.email: "mohan-anzentechnology-com"
+    nirmata.io/application.name: "hello-world"
+spec:
+  replicas: 3
+  revisionHistoryLimit: 5
+  selector:
+    matchLabels:
+      nirmata.io/application.name: "hello-world"
+      nirmata.io/service.name: "hello-world"
+    matchExpressions: []
+  strategy:
+    type: "RollingUpdate"
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        nirmata.io/deployment.name: "hello-world"
+        nirmata.io/application.run: "hello-world"
+        nirmata.io/environment.name: "qa-10apr"
+        nirmata.io/service.name: "hello-world"
+        nirmata.io/user.email: "mohan-anzentechnology-com"
+        nirmata.io/application.name: "hello-world"
+    spec:
+      terminationGracePeriodSeconds: 30
+      nodeSelector: {}
+      containers:
+      - name: "hello-world"
+        image: "nirmata/hello-world:green"
+        command: []
+        args: []
+        ports:
+        - name: "http"
+          containerPort: 8080
+          protocol: "TCP"
+status:
+  availableReplicas: 3
+  observedGeneration: 4
+  readyReplicas: 0
+  replicas: 3
+  unavailableReplicas: 0
+  updatedReplicas: 3
+  conditions:
+  - lastTransitionTime: "2018-04-17T05:15:44Z"
+    lastUpdateTime: "2018-04-17T05:15:44Z"
+    message: "Deployment has minimum availability."
+    reason: "MinimumReplicasAvailable"
+    status: "True"
+    type: "Available"

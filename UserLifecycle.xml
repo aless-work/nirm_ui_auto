@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Complete user lifecycle"  >
+
+	<parameter name="browser" value="Chrome" />
+	<parameter name="app_url" value="https://nirmata.io/" />
+	<parameter name="headless" value="true" />
+
+	<listeners>
+		<listener class-name="main.java.NirmataReportListener" />
+	</listeners>
+
+	<test thread-count="1" name="Create new user">
+		<parameter name="login_account" value="Nirmata" />
+		<parameter name="login_email" value="alexander@nirmata.com" />
+		<parameter name="adduser_email" value="nirmautomated101@gmail.com" />
+
+		<groups>
+			<run>
+				<include name="NirmataSetUp" />
+				<include name="SignIn" />
+				<exclude name="SignOut" />
+				<include name="AddUser" />
+			</run>
+		</groups>
+
+		<classes>
+			<class name="main.java.NirmataSetUp" />
+			<class name="main.java.login.SignIn" />
+			<class name="main.java.identity.AddUser" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="Login as new user">
+		<parameter name="login_account" value="Nirmata" />
+		<parameter name="login_email" value="nirmautomated101@gmail.com" />
+
+		<groups>
+			<run>
+				<include name="NirmataSetUp" />
+				<include name="SignIn" />
+			</run>
+		</groups>
+
+		<classes>
+			<class name="main.java.NirmataSetUp" />
+			<class name="main.java.login.SignIn" />
+		</classes>
+	</test>
+
+	<test thread-count="1" name="Delete new user">
+		<parameter name="login_account" value="Nirmata" />
+		<parameter name="login_email" value="alexander@nirmata.com" />
+		<parameter name="deluser_email" value="nirmautomated101@gmail.com" />
+
+		<groups>
+			<run>
+				<include name="NirmataSetUp" />
+				<include name="SignIn" />
+				<exclude name="SignOut" />
+				<include name="DeleteUser" />
+			</run>
+		</groups>
+
+		<classes>
+			<class name="main.java.NirmataSetUp" />
+			<class name="main.java.login.SignIn" />
+			<class name="main.java.identity.DeleteUser" />
+		</classes>
+	</test>
+
+
+</suite>
